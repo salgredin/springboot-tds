@@ -1,0 +1,17 @@
+{{> include/header}}
+{{> include/message}}
+<h1>Gestion d'items</h1>
+<a class="ui olive button" href="/new">Ajouter un item...</a>
+<a class="ui red button" href="/del">Supprimer un item...</a>
+
+{{#msg}}
+    <div class="ui success message">
+        {{.}}
+    </div>
+{{/msg}}
+<ul>
+    {{#items}}
+    <li>{{nom}}</li>
+    {{/items}}
+</ul>
+{{> include/footer}}
