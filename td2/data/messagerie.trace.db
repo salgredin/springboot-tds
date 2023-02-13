@@ -1,0 +1,33 @@
+2023-02-06 09:10:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (257)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 09:12:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (257)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 09:13:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (276)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 09:13:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (275)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:01:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (259)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:01:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (260)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:01:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (260)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:01:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (260)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:01:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (260)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:03:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (259)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]
+2023-02-06 10:03:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "NAME CHARACTER VARYING(255)": "U&'Organisation Organisation Organisation Organisation Organisation Organisation... (259)"; SQL statement:
+insert into organisation (aliases, domain, name, id) values (?, ?, ?, ?) [22001-214]

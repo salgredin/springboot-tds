@@ -1,0 +1,15 @@
+{{> /header}}
+<h2>Orgas</h2>
+<ul>
+  {{#orgas}}
+    <li>{{name}}
+      <ul>{{#users}}
+        <li>{{id}}</li>
+
+        {{/users}}
+      </ul>
+    </li>
+  {{/orgas}}
+
+</ul>
+{{> /footer}}
