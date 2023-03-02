@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface StoriesRepository : CrudRepository<Story, Int> {
-    fun getStoriesWithoutDev(): Story?
-    fun findStory(nom:String,id: Int): Story?
+interface StoryRepository : CrudRepository<Story, Int> {
+    fun findByDeveloperIsNull(): List<Story>
+    fun findByNameAndDeveloperId(nom:String,id: Int): Story
 }

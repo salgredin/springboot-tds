@@ -4,9 +4,8 @@ import edu.spring.stories.entities.Tag
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-class TagRepository {
-    @Repository
-    interface TagRepository : CrudRepository<Tag, Int> {
-        fun findByColor(color: String): Tag?
-    }
+
+@Repository
+interface TagRepository : CrudRepository<Tag, Int>  {
+    fun findByColor(color: String): List<Tag>
 }

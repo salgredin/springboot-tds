@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToMany
 
 @Entity
 class Tag {
-    constructor(label:String, color:String){
+    constructor(color:String, label:String){
         this.label = label
         this.color = color
     }
@@ -20,7 +20,7 @@ class Tag {
 
     open var color:String? = null
 
-    @ManyToMany(mappedBy = "tags")
-    open var stories:ArrayList<Story>? = null
+    @ManyToMany
+    open var stories:MutableList<Story> = mutableListOf()
 
 }
