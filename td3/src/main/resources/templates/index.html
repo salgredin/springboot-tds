@@ -1,0 +1,37 @@
+{{> main/header}}
+    <div>
+
+
+        <h2>Développeurs <a class="ui blue circular label">2</a></h2>
+
+    </div>
+    {{#developers}}
+        <p>{{firstname}} {{lastname}} {{^stories}}{{/stories}}
+            <form method="get" action="/developer/{{id}}/delete">
+                <button class="ui labeled secondary icon button">
+                    <i class="sign out alternate icon"></i>
+                    Quitter le projet
+                </button>
+            </form>
+        </p>
+    {{/developers}}
+    <form action="/developer/add" method="post">
+        <div class="ui input">
+
+            <input type="text" name="firstname" placeholder="first name">
+            <input type="text" name="lastname" placeholder="last name">
+        </div>
+        <button type="submit" class="ui icon button">
+            <i class="add icon"></i>
+        </button>
+
+    </form>
+    <form action="/developer/{id}/delete"></form>
+        <input type="text" name="firstname" placeholder="story name">
+
+    <input type="submit" placeholder="add story">
+    </form>
+
+{{> main/footer}}
+
+
