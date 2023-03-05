@@ -1,20 +1,7 @@
 {{> main/header}}
     <div>
-
-
-        <h2>Développeurs <a class="ui blue circular label">2</a></h2>
-
+        <h2>Développeurs <a class="ui green left pointing label count-developers">{{devcount}}</a></h2>
     </div>
-    {{#developers}}
-        <p>{{firstname}} {{lastname}} {{^stories}}{{/stories}}
-            <form method="get" action="/developer/{{id}}/delete">
-                <button class="ui labeled secondary icon button">
-                    <i class="sign out alternate icon"></i>
-                    Quitter le projet
-                </button>
-            </form>
-        </p>
-    {{/developers}}
     <form action="/developer/add" method="post">
         <div class="ui input">
 
@@ -26,11 +13,83 @@
         </button>
 
     </form>
-    <form action="/developer/{id}/delete"></form>
-        <input type="text" name="firstname" placeholder="story name">
 
-    <input type="submit" placeholder="add story">
-    </form>
+    <table class="ui single line table">
+        <thead>
+            <tr>
+                <th>Développeur</th>
+                <th>Stories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#developers}}
+                <tr>
+                    <td><div>{{firstname}} {{lastname}}</div></td>
+                    <td>
+                        <div>
+                            {{#stories}}
+                                <form method="get" action="story/{{id}}/giveup">
+
+                                        <div class="ui label">
+                                             {{name}} <button type="submit" name="name" value="{{name}}"><i class="remove icon"></i></button>
+                                        </div>
+
+                                </form>
+                            {{/stories}}
+                        </div>
+                    </td>
+                    <td>
+                            <form method="get" action="/developer/{{id}}/delete">
+                                <button class="ui labeled secondary icon button">
+                                    <i class="sign out alternate icon"></i>
+                                    Quitter le projet
+                                </button>
+                            </form>
+
+                            <form method="post" action="/developer/{{id}}/story" >
+                                <div class="ui input"><input type="text" name="story" placeholder="story name"></div>
+                                <button type="submit" value="add" class="ui green primary button">Ajouter US & Affecter</button>
+                            </form>
+                    </td>
+                </tr>
+            {{/developers}}
+        </tbody>
+    </table>
+
+
+    <div>
+        <h2>User stories à répartir <a class="ui red left pointing label count-stories">{{storycount}}</a></h2>
+    </div>
+<table class="ui single line table">
+    <thead>
+    <tr>
+        <th>User stories</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#nullstories}}
+        <tr>
+            <td>{{name}}</td>
+            <td>
+                <form method="post" action="/story/{{id}}/action">
+                    <select name="dev">
+                        {{#developers}}
+                            <option value="{{id}}">{{firstname}} {{lastname}}</option>
+                        {{/developers}}
+                    </select>
+                    <button type="submit" name="action" value="affect" class="ui icon button"><i class="add icon"></i></button>
+                    <button type="submit" name="action" value="remove" class="ui red icon button"><i class="remove icon"></i></button>
+                </form>
+            </td>
+        </tr>
+    {{/nullstories}}
+
+    </tbody>
+</table>
+
+
 
 {{> main/footer}}
 

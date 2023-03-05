@@ -1,5 +1,6 @@
 package edu.spring.stories.controllers
 
+import ch.qos.logback.core.net.SyslogOutputStream
 import edu.spring.stories.entities.Developer
 import edu.spring.stories.entities.Story
 import edu.spring.stories.repositories.DeveloperRepository
@@ -26,7 +27,9 @@ class MainController {
     @RequestMapping(path=["/",""])
     fun index(model: MutableMap<String, Any>): String {
         model["developers"] = developerRepository.findAll()
-        model["stories"] = storyRepository.findByDeveloperIsNull()
+        model["nullstories"] = storyRepository.findByDeveloperIsNull()
+        model["devcount"] = developerRepository.count()
+        model["storycount"] = storyRepository.findByDeveloperIsNull().size
         return "index"
     }
     @PostMapping("/developer/add")
@@ -38,26 +41,55 @@ class MainController {
     @PostMapping("/developer/{id}/story")
     fun addStory(@PathVariable id:Int, @RequestParam story: String): RedirectView {
         developerRepository.findById(id).ifPresent {
-            it.addStory(Story(story))
-            developerRepository.save(it)
+            var sto =Story(story,it)
+            System.out.println("${sto.id} ${sto.developer} ${sto.name}")
+            System.out.println("${it.firstname} ${it.lastname} ${it.id}")
+            System.out.println("${it.stories.count()}")
+            storyRepository.save(sto)
+            it.addStory(sto)
+            System.out.println("${it.stories.count()}")
+            System.out.println("story added")
+            it.stories.forEach({System.out.println("${it.id} ${it.developer} ${it.name}")})
         }
+
         return RedirectView("/")
     }
 
     @GetMapping("/story/{id}/giveup")
     @ResponseBody
-    fun giveUpStory(@PathVariable id:String): RedirectView {
-        var dev: List<Developer> =developerRepository.findByStoriesName(id!!)
-
+    fun giveUpStory(@PathVariable id:String,@RequestParam name:String): RedirectView {
+        storyRepository.findById(Integer.parseInt(id)).ifPresent {
+            it.developer?.giveUpStory(it)
+            it.developer = null
+            storyRepository.save(it)
+        }
         return RedirectView("/")
     }
     @GetMapping("/developer/{id}/delete")
     fun deleteDeveloper(@PathVariable id:Int?): RedirectView {
-        developerRepository.findById(id!!).ifPresent { developerRepository.delete(it) }
+        developerRepository.findById(id!!).ifPresent {
+            it.preRemove()
+            developerRepository.delete(it)
+        }
         return RedirectView("/")
     }
-    @PostMapping("/story/{id}/action")
-    fun addAction(@PathVariable id:Int?): RedirectView {
+    @PostMapping("/story/{id}/action" )
+    fun addAction(@PathVariable id:Int?,@RequestParam action:String, @RequestParam dev:String ): RedirectView {
+        if(action=="remove"){
+            storyRepository.findById(id!!).ifPresent {
+                storyRepository.delete(it)
+            }
+        }
+        else if(action=="affect"){
+            var devid=Integer.parseInt(dev)
+            developerRepository.findById(devid).ifPresent {
+                var deve=it
+                storyRepository.findById(id!!).ifPresent {
+                    deve.addStory(it)
+                }
+
+            }
+        }
         return RedirectView("/")
     }
 }

@@ -18,15 +18,15 @@ class Developer {
     open var stories:MutableList<Story> = mutableListOf()
 
 
-    fun addStory(story:Story){
-        stories?.add(story)
+    fun addStory(story:Story):Boolean{
+        return stories.add(story)
     }
-    fun giveUpStory(story:Story){
-        stories?.remove(story)
+    fun giveUpStory(story:Story):Boolean{
+        return stories.remove(story)
     }
     @PreRemove
-    fun preRemove(){
-        stories?.forEach { it.developer = null }
+    fun preRemove():Unit{
+        stories.forEach { it.developer = null }
     }
 
 

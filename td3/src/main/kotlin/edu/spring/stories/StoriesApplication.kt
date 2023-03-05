@@ -8,4 +8,5 @@ class StoriesApplication
 
 fun main(args: Array<String>) {
     runApplication<StoriesApplication>(*args)
+
 }
