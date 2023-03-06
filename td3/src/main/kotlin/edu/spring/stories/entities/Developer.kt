@@ -12,16 +12,20 @@ class Developer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     open var id:Int = 0
 
-    open var firstname:String? = null
-    open var lastname:String? = null
+    open var firstname:String= ""
+    open var lastname:String = ""
     @OneToMany(cascade=[CascadeType.PERSIST,CascadeType.MERGE])
+    @Column(nullable = true)
     open var stories:MutableList<Story> = mutableListOf()
 
 
     fun addStory(story:Story):Boolean{
+        story.developer=this
         return stories.add(story)
     }
     fun giveUpStory(story:Story):Boolean{
+
+        story.developer=null
         return stories.remove(story)
     }
     @PreRemove

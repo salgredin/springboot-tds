@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface DeveloperRepository : CrudRepository<Developer, Int> {
     fun findByStoriesName(story: String): List<Developer>
-    fun findByFirstnameAndLastname(firstname: String,lastname:String): Developer?
+    fun findByFirstnameAndLastname(firstname: String,lastname:String): Developer
 
 }
 

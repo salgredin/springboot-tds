@@ -30,6 +30,8 @@ class MainController {
         model["nullstories"] = storyRepository.findByDeveloperIsNull()
         model["devcount"] = developerRepository.count()
         model["storycount"] = storyRepository.findByDeveloperIsNull().size
+        model["devempty"] = developerRepository.count()==0L
+        model["storyempty"] = storyRepository.findByDeveloperIsNull().isEmpty()
         return "index"
     }
     @PostMapping("/developer/add")
@@ -41,12 +43,14 @@ class MainController {
     @PostMapping("/developer/{id}/story")
     fun addStory(@PathVariable id:Int, @RequestParam story: String): RedirectView {
         developerRepository.findById(id).ifPresent {
-            var sto =Story(story,it)
+            var sto =Story(story)
+
             System.out.println("${sto.id} ${sto.developer} ${sto.name}")
             System.out.println("${it.firstname} ${it.lastname} ${it.id}")
             System.out.println("${it.stories.count()}")
-            storyRepository.save(sto)
             it.addStory(sto)
+            developerRepository.save(it)
+
             System.out.println("${it.stories.count()}")
             System.out.println("story added")
             it.stories.forEach({System.out.println("${it.id} ${it.developer} ${it.name}")})
@@ -74,7 +78,7 @@ class MainController {
         return RedirectView("/")
     }
     @PostMapping("/story/{id}/action" )
-    fun addAction(@PathVariable id:Int?,@RequestParam action:String, @RequestParam dev:String ): RedirectView {
+    fun addAction(@PathVariable id:Int?,@RequestParam action:String, @RequestParam dev:String): RedirectView {
         if(action=="remove"){
             storyRepository.findById(id!!).ifPresent {
                 storyRepository.delete(it)
@@ -86,6 +90,7 @@ class MainController {
                 var deve=it
                 storyRepository.findById(id!!).ifPresent {
                     deve.addStory(it)
+                    developerRepository.save(deve)
                 }
 
             }

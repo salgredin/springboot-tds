@@ -1,10 +1,11 @@
 {{> main/header}}
     <div>
         <h2>Développeurs <a class="ui green left pointing label count-developers">{{devcount}}</a></h2>
+       <p>{{^developers}} Il n'y a pas de développeurs dans la base de données. {{/developers}}</p>
     </div>
     <form action="/developer/add" method="post">
         <div class="ui input">
-
+            <p>Ajout rapide de développeur </p>
             <input type="text" name="firstname" placeholder="first name">
             <input type="text" name="lastname" placeholder="last name">
         </div>
@@ -32,7 +33,7 @@
                                 <form method="get" action="story/{{id}}/giveup">
 
                                         <div class="ui label dev-story">
-                                             {{name}} <button type="submit" name="name" class="giveup-story"{{name}}"><i class="remove icon"></i></button>
+                                             {{name}} <button type="submit" name="name" class="giveup-story"{{name}}><i class="remove icon"></i></button>
                                         </div>
 
                                 </form>
@@ -61,6 +62,7 @@
     <div>
         <h2>User stories à répartir <a class="ui red left pointing label count-stories">{{storycount}}</a></h2>
     </div>
+<p>{{^nullstories}} Il n'y a pas d'US à attribuer dans la base de données.{{/nullstories}}</p>
 <table class="ui single line table">
     <thead>
     <tr>
